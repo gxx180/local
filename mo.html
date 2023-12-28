@@ -5,22 +5,93 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        .box{
-            background-color: yellow;
-            border: 1px solid black;
-            width: 100px;
-            height: 100px;
-            text-align: center;
+        *{
+            margin: 0;
+            padding: 0;
         }
-        .box a{
-            text-decoration: none;
-            font-size: 15px;
+        #box{
+            width: 200px;
+            height: 200px;
+            text-align: center;
+            background-color: aquamarine;
+        }
+        #num{
+            width: 50px;
+            height: 50px;
+            background-color: black;
+            margin-top: 50px;
+        }
+        #num input{
+            width: 200px;
+            height: 50px;
+            overflow: hidden;
+        }
+        #move{
+            width: 200px;
+            height: 100px;
+            border: 1px solid black;
+            margin-top: 200px;
         }
     </style>
 </head>
 <body>
-    <div class="box">
-        <a href="">你好</a>
+    <div id="box">
+        sdabhdsad
     </div>
+    <button id="btn">switch</button>
+    <!-- <div id="div">
+        <ul id="ul">
+            <li class="li1">nuhdufd</li>
+            <li name="li2">fduf</li>
+            <li>fdfsfe</li>
+        </ul>
+    </div> -->
+    <div id="num">
+        <input type="text" id="input">
+        
+        <!-- <img src="https://img10.360buyimg.com/seckillcms/s280x280_jfs/t1/183291/19/29397/63430/6369babdEd2b60b73/b79f997e22b2be37.jpg.webp" alt=""> -->
+    </div>
+
+    <div id="move"></div>
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <script>
+         document.addEventListener("DOMContentLoaded",function(){
+            let box = $('#box');
+            box.text('nihao');
+            box.html('<li>hello</li>');
+            box.css('display','none')
+            // let div = $('#div');
+            // console.log(div.text())
+            // console.log($('#ul li[name=li2]').html());
+           $('#btn')./* dblclick */click(function(){
+            box.show(1000)
+           })
+           let num = $('#num');
+           num.append('<ul><li>hsdauwa</li></ul> <ul><li>fudsfse</li></ul>')
+           $('#num')./* hover */ mouseenter(
+            function(){
+            num.css('background-color','red')
+           });
+           $('#num').mouseleave(function(){
+
+                num.css('background-color','')
+           })
+
+           $("#input").keydown(function(e){
+            console.log(e.key);
+           })
+
+           $('#move').mousemove(function(e){
+            $('#move').text('pageX =' + e.pageX + 'pageY = ' + e.pageY)
+           })
+
+
+
+
+        })
+        
+        
+    </script>
 </body>
 </html>
