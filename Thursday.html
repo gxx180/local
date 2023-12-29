@@ -28,7 +28,7 @@
             //重置初始化状态
             form.find('*').show().off();
             form.find(':checkbox').prop('checked', false).off();
-            deselectAlllabel.hide();
+            deselectAllLabel.hide();
 
 
             //拦截from表单提交
@@ -39,24 +39,60 @@
 
             //全选全不选
             selectAll.change(function () {
-                if (deselectAlllabel.is(':hidden')) {
+                if (deselectAllLabel.is(':hidden')) {
                     langs.prop('checked',true);
-                    selectAlllabel.hide();
-                    deselectAlllabel.show();
+                    selectAllLabel.hide();
+                    deselectAllLabel.show();
                 } else {
                     langs.prop('checked', false);
-                    selectAlllabel.show();
+                    selectAllLabel.show();
                     deselectAllLabel.hide();
                 }
             });
 
-            
+            //反选
+            invertSelect.click(function(){
+                for(let i = 0;i<langs.length;i++){
+                    let lang = $(langs.get(i));//转换为jquery对象
+                    if(lang.prop('checked')){
+                        lang.prop('checked',false);
+                    }else{
+                        lang.prop('checked',true);
+                    }
+                    if(i === langs.length-1){
+                        lang.change();
+                    }
+                }
+            });
+
+            //单选
+            for(let i = 0;i<langs.length;i++){
+                let lang = $(langs.get(i));
+                langs.change(function(){
+                    let n = 0;
+                    for(let i = 0;i<langs.length;i++){
+                        if($(langs.get(i)).prop('checked')){
+                            n++;
+                        }
+                    }
+                    if(n === langs.length){
+                        selectAll.prop('checked',true);
+                        selectAllLabel.hide();
+                        deselectAllLabel.show();
+                    }else{
+                        selectAll.prop('checked',false);
+                        selectAllLabel.show();
+                        deselectAllLabel.hide();
+                    }
+                });
+            }
+
         })
     </script>
     <form action="test" id="test-form">
         <legend>请选择想要学习的编程语言：</legend>
         <fieldset>
-            <p><label class="selectAll"><input type="checkbox"> <span class="selectAll">全选</span><input type="checkbox"><span class="deselectAll">全不选</span></label><input type="checkbox"><a href="#" class="invertSelect">反选</a></p>
+            <p><label class="selectAll"><input type="checkbox"> <span class="selectAll">全选</span><span class="deselectAll">全不选</span></label> <a href="#" class="invertSelect">反选</a></p>
             <p><label><input type="checkbox" name="lang" value="javascript"> JavaScript</label></p>
             <p><label><input type="checkbox" name="lang" value="python"> Python</label></p>
             <p><label><input type="checkbox" name="lang" value="ruby"> Ruby</label></p>
