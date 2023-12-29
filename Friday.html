@@ -1,22 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        #box{
+        #box {
             width: 200px;
             height: 200px;
             background-color: aqua;
         }
+
+        #test-animates {
+            width: 100px;
+            height: 100px;
+            background-color: brown;
+        }
+
+        #img {
+            width: 570px;
+            height: 273px;
+            overflow: hidden;
+            margin: auto;
+            margin-top: 100px;
+        }
+
+        #img img {
+            width: 100%;
+            height: 100%;
+        }
+
+        #btn1 {
+            position: absolute;
+            top: 50%;
+            left: 25%;
+            z-index: 50;
+        }
+
+        #btn2 {
+            position: absolute;
+            top: 50%;
+            right: 25%;
+            z-index: 50;
+        }
+
+        #cir span {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 5px;
+            background-color: brown;
+            z-index: 100;
+        }
+
+        #cir {
+            position: absolute;
+            bottom: 10%;
+            left: 48%;
+
+        }
+
+        #cir .active {
+            background-color: aliceblue;
+        }
     </style>
 </head>
+
 <body>
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.9.1/jquery.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded",function(){
-            let box = $('#box');
+        document.addEventListener("DOMContentLoaded", function () {
+            /* let box = $('#box');
             let button = $('button');
             // box.css('display','none')
             button.click(function(){
@@ -31,12 +86,102 @@
                         opicity:'1'
                     })
                 })
-            });
-            
+            }); */
+
+
+            /* let test = $('#test-animates');
+            let span = $('span');
+            test.css('display','none')
+            span.click(function(){
+                test.slideDown(2000).delay(1000)
+                .animate({
+                    width:'150px',
+                    height:'150px'
+                },2000)
+                .delay(1000)
+                .animate({
+                    width:'100px',
+                    height:'100px'
+                },2000)
+            }) */
+
+            let img = $('#img');
+            var index = 0;
+
+            function addStyle() {
+                $('img').eq(index).fadeIn();
+                $('img').eq(index).siblings().fadeOut();
+                $('span').eq(index).addClass("active");
+                $('span').eq(index).siblings().removeClass("active");
+            }
+            //上一张
+            $('#btn1').click(function () {
+                index--;
+                if (index < 0) {
+                    index = 2;
+                }
+
+                addStyle();
+            })
+            //下一张
+            $('#btn2').click(function () {
+                next_pic()
+            })
+            function next_pic() {
+                index++;
+                if (index > 2) {
+                    index = 0;
+                }
+
+                addStyle();
+            }
+
+            //自动轮播
+            let i;
+            autoPlay();
+            function autoPlay() {
+                i = setInterval(function () {
+                    next_pic();
+                }, 2000)
+            }
+
+
+            //悬浮停止
+            $('#img').mouseenter(function () {
+                clearInterval(i);
+            })
+
+            $('#img').mouseout(function () {
+                autoPlay();
+            })
         })
     </script>
 
-    <div id="box"></div>
+    <!-- <div id="box"></div>
     <button>switch</button>
+    <div id="test-animates"></div>
+    <span>switch</span> -->
+    <div style="width: 1080px; margin: auto;position: relative;">
+        <div id="img">
+            <img src="https://h2.appsimg.com/a.appsimg.com/upload/brand/upcb/bi001/2023/1103/126/ias_50091b2f0a8d8dd3a0ede1614851bb73_1135x545_85.jpg"
+                alt="">
+            <img src="https://h2.appsimg.com/a.appsimg.com/upload/brand/upcb/bi001/2023/1109/122/ias_08245a78baa81896cb93e0211407fba4_1135x545_85.jpg"
+                alt="">
+            <img src="https://h2.appsimg.com/a.appsimg.com/upload/brand/upcb/bi001/2023/0817/145/ias_76beeac9e150cb08bd521b64db1b440e_1135x545_85.jpg"
+                alt="">
+        </div>
+        
+        <div id="cir">
+            <span class="active"></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <button id="btn1">< </button>
+        <button id="btn2">> </button>
+    </div>
+
+
 </body>
+
 </html>
