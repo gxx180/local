@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        /* div跟随鼠标移动 */
+        /* .box1{
+            width: 100px;
+            height: 100px;
+            background-color: black;
+            position: absolute;
+        } */
+
+        /* 鼠标移上显示坐标 */
+        /* .box2{
+            width: 300px;
+            height: 100px;
+            border: 1px solid black;
+        }
+        .box3{
+            width: 300px;
+            height: 50px;
+            border: 1px solid black;
+            margin-top: 50px;
+        } */
+
+        /* 阅读协议 */
+        #info{
+            width: 300px;
+            height: 300px;
+            background-color: antiquewhite;
+            overflow: auto;
+        }
+    </style>
+     <script>
+        window.onload = function(){
+            //div跟随鼠标移动
+            /* var  box1 = document.getElementsByClassName('box1')[0];
+            document.onmousemove = function(event){
+                //处理兼容性问题
+                event = event || window.event;
+
+                let left = event.clientX;
+                let top = event.clientY;
+                
+
+                box1.style.left = left +'px';
+                box1.style.top = top +'px';
+            } */
+
+            //鼠标移上显示坐标
+            /* let box2 = document.querySelector('.box2');
+            let box3 = document.querySelector('.box3');
+
+            box2.onmousemove = function(event){
+                let x = event.clientX;
+                let y = event.clientY;
+
+                event = event || window.event;
+
+                box3.innerHTML = 'x =' + x + ', y ='+y;
+            } */
+            var info = document.getElementById("info");
+            var tr = document.getElementById("tr");
+            var ty = document.getElementById("ty");
+            info.onscroll = function(){
+                // alert(info.scrollHeight-info.scrollTop);
+                /* console.log( info.scrollHeight);
+                console.log( info.scrollTop); */
+                /* if(info.scrollHeight - Math.floor(info.scrollTop ) == info.clientHeight){
+                    tr.disabled = false;
+                    ty.disabled = false; 
+                } */
+                if(info.scrollHeight - info.scrollTop < info.clientHeight){
+                    tr.disabled = false;
+                    ty.disabled = false; 
+                }
+            };
+        }
+    </script> 
+    
+</head>
+<body>
+    <!-- <div class="box1"></div> -->
+
+    <!-- <div class="box2"></div>
+    <div class="box3"></div> -->
+
+    <p id="info">
+        阅读协议阅读协议阅读协议阅读协议
+        阅读协议阅读协议阅读协议阅读协议
+        阅读协议阅读协议阅读协议阅读协议
+        阅读协议阅读协议阅读协议阅读协议
+        阅读协议阅读协议阅读协议阅读协议
+        阅读协议阅读协议阅读协议阅读协议
+        阅读协议阅读协议阅读协议阅读协议
+        阅读协议阅读协议阅读协议阅读协议
+        阅读协议阅读协议阅读协议阅读协议
+        阅读协议阅读协议阅读协议阅读协议
+        阅读协议阅读协议阅读协议阅读协议
+        阅读协议阅读协议阅读协议阅读协议
+        阅读协议阅读协议阅读协议阅读协议
+        阅读协议阅读协议阅读协议阅读协议
+        阅读协议阅读协议阅读协议阅读协议
+        阅读协议阅读协议阅读协议阅读协议
+        阅读协议阅读协议阅读协议阅读协议
+        阅读协议阅读协议阅读协议阅读协议
+        阅读协议阅读协议阅读协议阅读协议
+        阅读协议阅读协议阅读协议阅读协议
+        阅读协议阅读协议阅读协议阅读协议
+        阅读协议阅读协议阅读协议阅读协议
+        阅读协议阅读协议阅读协议阅读协议
+        阅读协议阅读协议阅读协议阅读协议
+        阅读协议阅读协议阅读协议阅读协议
+        阅读协议阅读协议阅读协议阅读协议
+        阅读协议阅读协议阅读协议阅读协议
+        阅读协议阅读协议阅读协议阅读协议
+        阅读协议阅读协议阅读协议阅读协议
+        阅读协议阅读协议阅读协议阅读协议
+        阅读协议阅读协议阅读协议阅读协议
+        阅读协议阅读协议阅读协议阅读协议
+        阅读协议阅读协议阅读协议阅读协议
+        阅读协议阅读协议阅读协议阅读协议
+    </p>
+    <input type="checkbox" disabled id="tr">已阅读
+    <input type="submit" value="注册" disabled id="ty">
+    
+</body>
+</html>
